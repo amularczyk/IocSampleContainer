@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IocSampleContainer", "IocSampleContainer.csproj", "{1BAA7E2E-9D0D-48A9-B5FF-8336F909E982}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IocSampleContainer", "IocSampleContainer\IocSampleContainer.csproj", "{1BAA7E2E-9D0D-48A9-B5FF-8336F909E982}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IocSampleContainer.Tests", "..\IocSampleContainer.Tests\IocSampleContainer.Tests.csproj", "{E3457878-72D5-4289-A2A9-A25442E507D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IocSampleContainer.Tests", "IocSampleContainer.Tests\IocSampleContainer.Tests.csproj", "{E3457878-72D5-4289-A2A9-A25442E507D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

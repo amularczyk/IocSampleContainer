@@ -5,22 +5,44 @@ namespace IocSampleContainer
 {
     public class Container : IContainer
     {
-        private readonly List<Type> _types = new List<Type>();
+        private readonly List<Type> _singletons = new List<Type>();
+        private readonly Dictionary<Type, object> _types = new Dictionary<Type, object>();
 
-        public void Register<T>()
+        public void Register<T>(bool isSingleton)
         {
-            _types.Add(typeof(T));
+            if (isSingleton)
+            {
+                _singletons.Add(typeof(T));
+            }
+
+            _types.Add(typeof(T), null);
         }
 
         public T Resolve<T>()
         {
-            if (_types.Contains(typeof(T)))
+            var type = typeof(T);
+            if (!_types.ContainsKey(type))
             {
-                var obj = Activator.CreateInstance<T>();
-                return obj;
+                throw new Exception($"Type {type} is not registered.");
             }
 
-            throw new Exception($"Type {typeof(T)} is not registered.");
+            if (_singletons.Contains(type))
+            {
+                if (_types[type] == null)
+                {
+                    _types[type] = GetNewInstance<T>();
+                }
+
+                return (T)_types[type];
+            }
+
+            var obj = GetNewInstance<T>();
+            return obj;
+        }
+
+        private static T GetNewInstance<T>()
+        {
+            return Activator.CreateInstance<T>();
         }
     }
 }

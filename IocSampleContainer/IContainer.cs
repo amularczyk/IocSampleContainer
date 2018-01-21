@@ -2,7 +2,7 @@
 {
     public interface IContainer
     {
-        void Register<T>();
+        void Register<T>(bool isSingleton);
 
         T Resolve<T>();
     }
