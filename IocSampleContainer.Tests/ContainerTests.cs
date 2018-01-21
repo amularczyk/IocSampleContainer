@@ -57,6 +57,38 @@ namespace IocSampleContainer.Tests
 
             Assert.AreEqual(foo1.Id, foo2.Id);
         }
+
+        [TestMethod]
+        public void SameScopeInterfaceTest()
+        {
+            IContainer container = new Container();
+
+            container.Register<IFoo, Foo>(RegistrationKind.Scope);
+
+            var scope = container.StartNewScope();
+            var foo1 = container.Resolve<IFoo>(scope);
+            var foo2 = container.Resolve<IFoo>(scope);
+            container.FinishScope(scope);
+
+            Assert.AreEqual(foo1.Id, foo2.Id);
+        }
+
+        [TestMethod]
+        public void DifferentScopeInterfaceTest()
+        {
+            IContainer container = new Container();
+
+            container.Register<IFoo, Foo>(RegistrationKind.Scope);
+
+            var scope1 = container.StartNewScope();
+            var foo1 = container.Resolve<IFoo>(scope1);
+            container.FinishScope(scope1);
+            var scope2 = container.StartNewScope();
+            var foo2 = container.Resolve<IFoo>(scope2);
+            container.FinishScope(scope2);
+
+            Assert.AreNotEqual(foo1.Id, foo2.Id);
+        }
     }
 
     public interface IFoo

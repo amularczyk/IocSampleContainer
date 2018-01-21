@@ -7,5 +7,11 @@
         void Register<TIn, TOut>(RegistrationKind registrationKind);
 
         T Resolve<T>();
+
+        T Resolve<T>(IScope scope);
+
+        IScope StartNewScope();
+
+        void FinishScope(IScope scope);
     }
 }
