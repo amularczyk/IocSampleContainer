@@ -2,9 +2,9 @@
 {
     public interface IContainer
     {
-        void Register<T>(bool isSingleton);
+        void Register<T>(RegistrationKind registrationKind);
 
-        void Register<TIn, TOut>(bool isSingleton);
+        void Register<TIn, TOut>(RegistrationKind registrationKind);
 
         T Resolve<T>();
     }

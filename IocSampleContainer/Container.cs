@@ -5,27 +5,16 @@ namespace IocSampleContainer
 {
     public class Container : IContainer
     {
-        private readonly List<Type> _singletons = new List<Type>();
         private readonly Dictionary<Type, RegisteredType> _types = new Dictionary<Type, RegisteredType>();
 
-        public void Register<T>(bool isSingleton)
+        public void Register<T>(RegistrationKind registrationKind)
         {
-            if (isSingleton)
-            {
-                _singletons.Add(typeof(T));
-            }
-
-            _types.Add(typeof(T), new RegisteredType { DestType = typeof(T)});
+            _types.Add(typeof(T), new RegisteredType {DestType = typeof(T), RegistrationKind = registrationKind});
         }
 
-        public void Register<TIn, TOut>(bool isSingleton)
+        public void Register<TIn, TOut>(RegistrationKind registrationKind)
         {
-            if (isSingleton)
-            {
-                _singletons.Add(typeof(TIn));
-            }
-
-            _types.Add(typeof(TIn), new RegisteredType { DestType = typeof(TOut) });
+            _types.Add(typeof(TIn), new RegisteredType {DestType = typeof(TOut), RegistrationKind = registrationKind});
         }
 
         public T Resolve<T>()
@@ -36,10 +25,10 @@ namespace IocSampleContainer
                 throw new Exception($"Type {type} is not registered.");
             }
 
-            if (_singletons.Contains(type))
-            {
-                var registeredType = _types[type];
+            var registeredType = _types[type];
 
+            if (registeredType.RegistrationKind == RegistrationKind.Singleton)
+            {
                 if (registeredType.Value == null)
                 {
                     registeredType.Value = GetNewInstance(registeredType.DestType);
@@ -62,5 +51,13 @@ namespace IocSampleContainer
     {
         public Type DestType { get; set; }
         public object Value { get; set; }
+        public RegistrationKind RegistrationKind { get; set; }
+    }
+
+    public enum RegistrationKind
+    {
+        Transient,
+        Singleton,
+        Scope
     }
 }

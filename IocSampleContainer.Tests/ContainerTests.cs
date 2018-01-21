@@ -11,7 +11,7 @@ namespace IocSampleContainer.Tests
         {
             IContainer container = new Container();
 
-            container.Register<Foo>(false);
+            container.Register<Foo>(RegistrationKind.Transient);
 
             var foo1 = container.Resolve<Foo>();
             var foo2 = container.Resolve<Foo>();
@@ -24,7 +24,7 @@ namespace IocSampleContainer.Tests
         {
             IContainer container = new Container();
 
-            container.Register<Foo>(true);
+            container.Register<Foo>(RegistrationKind.Singleton);
 
             var foo1 = container.Resolve<Foo>();
             var foo2 = container.Resolve<Foo>();
@@ -37,7 +37,7 @@ namespace IocSampleContainer.Tests
         {
             IContainer container = new Container();
 
-            container.Register<IFoo, Foo>(false);
+            container.Register<IFoo, Foo>(RegistrationKind.Transient);
 
             var foo1 = container.Resolve<IFoo>();
             var foo2 = container.Resolve<IFoo>();
@@ -50,7 +50,7 @@ namespace IocSampleContainer.Tests
         {
             IContainer container = new Container();
 
-            container.Register<IFoo, Foo>(true);
+            container.Register<IFoo, Foo>(RegistrationKind.Singleton);
 
             var foo1 = container.Resolve<IFoo>();
             var foo2 = container.Resolve<IFoo>();
@@ -66,11 +66,11 @@ namespace IocSampleContainer.Tests
 
     public class Foo : IFoo
     {
-        public Guid Id { get; set; }
-
         public Foo()
         {
-                Id = Guid.NewGuid();
+            Id = Guid.NewGuid();
         }
+
+        public Guid Id { get; set; }
     }
 }
