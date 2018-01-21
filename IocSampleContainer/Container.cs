@@ -6,7 +6,7 @@ namespace IocSampleContainer
     public class Container : IContainer
     {
         private readonly List<Type> _singletons = new List<Type>();
-        private readonly Dictionary<Type, object> _types = new Dictionary<Type, object>();
+        private readonly Dictionary<Type, RegisteredType> _types = new Dictionary<Type, RegisteredType>();
 
         public void Register<T>(bool isSingleton)
         {
@@ -15,7 +15,17 @@ namespace IocSampleContainer
                 _singletons.Add(typeof(T));
             }
 
-            _types.Add(typeof(T), null);
+            _types.Add(typeof(T), new RegisteredType { DestType = typeof(T)});
+        }
+
+        public void Register<TIn, TOut>(bool isSingleton)
+        {
+            if (isSingleton)
+            {
+                _singletons.Add(typeof(TIn));
+            }
+
+            _types.Add(typeof(TIn), new RegisteredType { DestType = typeof(TOut) });
         }
 
         public T Resolve<T>()
@@ -28,21 +38,29 @@ namespace IocSampleContainer
 
             if (_singletons.Contains(type))
             {
-                if (_types[type] == null)
+                var registeredType = _types[type];
+
+                if (registeredType.Value == null)
                 {
-                    _types[type] = GetNewInstance<T>();
+                    registeredType.Value = GetNewInstance(registeredType.DestType);
                 }
 
-                return (T)_types[type];
+                return (T)registeredType.Value;
             }
 
-            var obj = GetNewInstance<T>();
-            return obj;
+            var obj = GetNewInstance(_types[type].DestType);
+            return (T)obj;
         }
 
-        private static T GetNewInstance<T>()
+        private static object GetNewInstance(Type type)
         {
-            return Activator.CreateInstance<T>();
+            return Activator.CreateInstance(type);
         }
+    }
+
+    public class RegisteredType
+    {
+        public Type DestType { get; set; }
+        public object Value { get; set; }
     }
 }

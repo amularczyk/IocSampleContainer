@@ -31,10 +31,46 @@ namespace IocSampleContainer.Tests
 
             Assert.AreEqual(foo1.Id, foo2.Id);
         }
+
+        [TestMethod]
+        public void TransientInterfaceTest()
+        {
+            IContainer container = new Container();
+
+            container.Register<IFoo, Foo>(false);
+
+            var foo1 = container.Resolve<IFoo>();
+            var foo2 = container.Resolve<IFoo>();
+
+            Assert.AreNotEqual(foo1.Id, foo2.Id);
+        }
+
+        [TestMethod]
+        public void SingletonInterfaceTest()
+        {
+            IContainer container = new Container();
+
+            container.Register<IFoo, Foo>(true);
+
+            var foo1 = container.Resolve<IFoo>();
+            var foo2 = container.Resolve<IFoo>();
+
+            Assert.AreEqual(foo1.Id, foo2.Id);
+        }
     }
 
-    public class Foo
+    public interface IFoo
     {
-        public Guid Id = Guid.NewGuid();
+        Guid Id { get; set; }
+    }
+
+    public class Foo : IFoo
+    {
+        public Guid Id { get; set; }
+
+        public Foo()
+        {
+                Id = Guid.NewGuid();
+        }
     }
 }
