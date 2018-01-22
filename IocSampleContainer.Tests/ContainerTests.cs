@@ -64,11 +64,14 @@ namespace IocSampleContainer.Tests
             IContainer container = new Container();
 
             container.Register<IFoo, Foo>(RegistrationKind.Scope);
+            IFoo foo1;
+            IFoo foo2;
 
-            var scope = container.StartNewScope();
-            var foo1 = container.Resolve<IFoo>(scope);
-            var foo2 = container.Resolve<IFoo>(scope);
-            container.FinishScope(scope);
+            using (var scope = container.StartNewScope())
+            {
+                foo1 = container.Resolve<IFoo>(scope);
+                foo2 = container.Resolve<IFoo>(scope);
+            }
 
             Assert.AreEqual(foo1.Id, foo2.Id);
         }
@@ -79,13 +82,18 @@ namespace IocSampleContainer.Tests
             IContainer container = new Container();
 
             container.Register<IFoo, Foo>(RegistrationKind.Scope);
+            IFoo foo1;
+            IFoo foo2;
 
-            var scope1 = container.StartNewScope();
-            var foo1 = container.Resolve<IFoo>(scope1);
-            container.FinishScope(scope1);
-            var scope2 = container.StartNewScope();
-            var foo2 = container.Resolve<IFoo>(scope2);
-            container.FinishScope(scope2);
+            using (var scope = container.StartNewScope())
+            {
+                foo1 = container.Resolve<IFoo>(scope);
+            }
+
+            using (var scope = container.StartNewScope())
+            {
+                foo2 = container.Resolve<IFoo>(scope);
+            }
 
             Assert.AreNotEqual(foo1.Id, foo2.Id);
         }

@@ -11,7 +11,5 @@
         T Resolve<T>(IScope scope);
 
         IScope StartNewScope();
-
-        void FinishScope(IScope scope);
     }
 }

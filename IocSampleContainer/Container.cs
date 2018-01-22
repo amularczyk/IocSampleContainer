@@ -5,9 +5,6 @@ namespace IocSampleContainer
 {
     public class Container : IContainer
     {
-        private readonly Dictionary<IScope, Dictionary<Type, object>> _scopes =
-            new Dictionary<IScope, Dictionary<Type, object>>();
-
         private readonly Dictionary<Type, RegisteredType> _types = new Dictionary<Type, RegisteredType>();
 
         public void Register<T>(RegistrationKind registrationKind)
@@ -39,14 +36,15 @@ namespace IocSampleContainer
 
             if (registeredType.RegistrationKind == RegistrationKind.Scope)
             {
-                var registeredTypesForScope = _scopes[scope];
+                var objectFromScpe = scope.GetObject(type);
 
-                if (!registeredTypesForScope.ContainsKey(type))
+                if (objectFromScpe == null)
                 {
-                    registeredTypesForScope[type] = GetNewInstance(registeredType.DestType);
+                    objectFromScpe = GetNewInstance(registeredType.DestType);
+                    scope.AddObject(type, objectFromScpe);
                 }
 
-                return (T)registeredTypesForScope[type];
+                return (T)objectFromScpe;
             }
 
             return GetObject<T>(registeredType);
@@ -83,14 +81,7 @@ namespace IocSampleContainer
 
         public IScope StartNewScope()
         {
-            var scope = new Scope();
-            _scopes.Add(scope, new Dictionary<Type, object>());
-            return scope;
-        }
-
-        public void FinishScope(IScope scope)
-        {
-            _scopes.Remove(scope);
+            return new Scope();
         }
     }
 
@@ -108,18 +99,35 @@ namespace IocSampleContainer
         Scope
     }
 
-    public interface IScope
+    public interface IScope : IDisposable
     {
-        Guid Id { get; }
+        void AddObject(Type type, object obj);
+        object GetObject(Type type);
     }
 
     public class Scope : IScope
     {
+        private Dictionary<Type, object> _scopeObjects;
+
         public Scope()
         {
-            Id = Guid.NewGuid();
+            _scopeObjects = new Dictionary<Type, object>();
+        }
+        
+
+        public void Dispose()
+        {
+            _scopeObjects = null;
         }
 
-        public Guid Id { get; }
+        public void AddObject(Type type, object obj)
+        {
+            _scopeObjects.Add(type, obj);
+        }
+
+        public object GetObject(Type type)
+        {
+            return _scopeObjects.ContainsKey(type) ? _scopeObjects[type] : null;
+        }
     }
 }
