@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ListContainer.cs" />
+    <Compile Include="ManyResolvesContainer.cs" />
+    <Compile Include="ManyRegistrationContainer.cs" />
     <Compile Include="Container.cs" />
     <Compile Include="IContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
