@@ -20,7 +20,7 @@ namespace IocSampleContainer
         public T Resolve<T>()
         {
             var type = typeof(T);
-            ValidateType<T>(type);
+            ValidateType(type);
 
             var registeredType = _types[type];
 
@@ -30,7 +30,7 @@ namespace IocSampleContainer
         public T Resolve<T>(IScope scope)
         {
             var type = typeof(T);
-            ValidateType<T>(type);
+            ValidateType(type);
 
             var registeredType = _types[type];
 
@@ -66,7 +66,7 @@ namespace IocSampleContainer
             return (T)obj;
         }
 
-        private void ValidateType<T>(Type type)
+        private void ValidateType(Type type)
         {
             if (!_types.ContainsKey(type))
             {
