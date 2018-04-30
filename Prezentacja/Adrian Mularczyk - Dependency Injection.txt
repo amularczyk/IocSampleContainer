@@ -1,0 +1,70 @@
+\{document}
+Nazywa się Adrian Mularczyk i dzisiaj opowiem co to jest wstrzykiwanie zależności i jak wygląda przykładowa implemetacja. Pomysł na prezentację narodził się, ponieważ zaobserwowałem, że praktycznie każdy używa Depepndency Injection, a nie każdy wiem czym ono jest. Z kolei jeszcze mniej osób wie, jak ono działa pod spodem.
+
+
+\{Agenda}
+Tutaj krótka agenda o czym będę mówił. Najpierw opiszę jaki problem Dependecy Incjetion rozwiązuje. Potem w kilku zdaniach opowiem czym ono jest, a następnie przejdziemy do kodu. Zaprezentuję prostą implementację wstrzykiwania zależności. Dalej opowiem jak może taką implementację rozbudować, a także wspomnę o tym jak to wygląda w .NET core.
+
+
+\{Przedstawienie problemu}
+Na przestrzeni lat powstało bardzo dużo projektów. Część z nich była łatwiejsza w utrzymaniu, część trudniejsza. Analiza tych projektów pozwoliła zauważyć, że są pewne zasady, które powodują, że projekty rozwija się łatwiej. Te zasady zostały połączone w zbiory zasad.
+
+\{SOLID}
+Najbardziej popularnych i powszechnie stosowanym zbiorem zasad jest SOLID. Składa się on z pięciu zasady: Single responsibility principle, open/close principle, liskov substituion principle, interface segregation principle oraz dependency inversion principle.
+
+\{SOLID2}
+Niniejsza prezentacja w dużej mierze skupia się na rozwiązaniu ostatniej z tych zasad.
+
+\{Dependency Inversion Principal}
+Dependency Inversion Principal mówi o tym, że wysokopoziomowe moduły nie powinny zależeć od modułów niskopoziomowych. Zależności między nimi powinny wynikać z abstrakcji.
+<Opis kodu>
+
+\{Kontenery wstrzykiwania zależności}
+Aby łatwiej zastosować przedstawioną zasadę można wesprzeć się tzw. kontenerem wstrzykiwania zależności.
+Taki kontener jest obiektem, który przechowuje mapę, w której abstrakcje (interfejsy, klasy abstrakcyjne) mają przyporządkowane implementacje, czyli klasy implementujące interfejsy lub dziedziczące z klas abstrakcyjnych.
+Kontenery dostarczają nam kilku funkcjonalności.
+Jedną z nich jest możliwość zdefiniowania tego jakiej instancję jakiej klasy należy zwrócić w miejsce konkretnego typu, czyli rejestracja - metoda Register.
+Drugą jest tworzenie instancji obiektów konkretnej klasy lub implementujących określony interfejs - metoda Resolve.
+<Opis kodu>
+
+
+\{Wstrzykiwanie zależności}
+Wspomniałem o wstrzykiwaniu zależności, ale czym ono jest? Jest to techniką, która umożliwia luźne powiązania, a luźne powiązania sprawiają, że kod jest rozszerzalny i łatwy w utrzymaniu.
+
+\{Rodzaje wstrzykiwania zależności}
+Wstrzykiwanie zależności może odbywać się na 3 sposoby:
+Wstrzykiwanie przez konstruktor, przez metodę oraz przez właściwość.
+<Opis kodu>
+
+\{Registration types}
+Najbardziej popularnymi rodzajami rejestracji są:
+- Zarejestruj jako Singleton, czyli zwracamy zawszę tą samą instancję.
+- Zarejestruj jako Transient, czyli zawsze zwracamy nową instancję.
+- Zarejestruj jako Scoped (można spotkać również jako wątek albo HttpRequest), czyli dla danego zakresu zwróć tą samą instancję, ale dla dwóch różnych zakresów zwróć różne instancje.
+- Zarejestruj jako funckję - to odnośni się do trzech powyższych rejestracji ponieważ funkcja jest przekazywana jako parametr.
+
+\{Implementacje przemysłowe}
+Na rynku jest wiele implementacji wstrzykiwania zależności. Poniżej przedstawiono kilka najbardziej popularnych (według ilości pobrań z NuGet) oraz kilka najszybszych (według rankingu na blogu Daniela Palme).
+<poprawić link>
+
+
+\{Code}
+\{Dodanie DI do własnego projektu}
+A teraz będzie trochę kodu. Na początek pokażę jak dodać wstrzykiwanie zależności w projekcie .NET Core, a potem to samo dla projektu w zwykłym .NET Framework z wykorzystaniem Autofac.
+
+\{Implementacja}
+Teraz pokaże jak wygląda taka implementacja od środka na podstawie własnego kodu.
+1. SampleContainer
+2. Singletons
+3. Interfaces
+4. RegisterionKind
+5. Scopes
+
+\{Rozszerzenia}
+A teraz kilka przykładów jak taką implementację można by rozszerzyć:
+
+
+\section{Podsumowanie}
+Mam nadzieję, że dzięki tej prezentacji dowiedzieliście się trochę więcej o wstrzykiwaniu zależności, a także przekonaliście się, że tak na prawdę nie dzieję się tam żadna magia.
+Czy są jakieś pytania?
+Dziękuję.
