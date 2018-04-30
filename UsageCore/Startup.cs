@@ -18,7 +18,8 @@ namespace UsageCore
         {
             services.AddSingleton<ISingletonClass, SingletonClass>();
             services.AddTransient(typeof(ITransientClass), typeof(TransientClass));
-            services.AddScoped<IScopedClass, ScopedClass>(provider => new ScopedClass(provider.GetService<ITransientClass>()));
+            services.AddScoped<IScopedClass, ScopedClass>(provider =>
+                new ScopedClass(provider.GetService<ITransientClass>()));
 
             services.AddMvc();
         }
@@ -27,15 +28,8 @@ namespace UsageCore
         {
             if (env.IsDevelopment())
             {
-                app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-            }
-
-            app.UseStaticFiles();
 
             app.UseMvc();
         }

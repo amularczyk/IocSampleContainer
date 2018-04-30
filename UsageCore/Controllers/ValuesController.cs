@@ -1,43 +1,47 @@
 ﻿using System.Collections.Generic;
-using System.Web.Http;
-using UsageCore;
+using Microsoft.AspNetCore.Mvc;
 
-namespace UsageFramework.Controllers
+namespace UsageCore.Controllers
 {
-    public class ValuesController : ApiController
+    [Route("api/[controller]")]
+    public class ValuesController : Controller
     {
         public ValuesController(
             ISingletonClass singletonClass,
             ITransientClass transientClass,
-            IScopedClass scopedClass,
-            ISampleClass sampleClass
+            IScopedClass scopedClass
         )
         {
         }
 
         // GET api/values
+        [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new[] {"value1", "value2"};
+            return new string[] { "value1", "value2" };
         }
 
         // GET api/values/5
+        [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
 
         // POST api/values
-        public void Post([FromBody] string value)
+        [HttpPost]
+        public void Post([FromBody]string value)
         {
         }
 
         // PUT api/values/5
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody]string value)
         {
         }
 
         // DELETE api/values/5
+        [HttpDelete("{id}")]
         public void Delete(int id)
         {
         }

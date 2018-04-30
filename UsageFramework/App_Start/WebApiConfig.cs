@@ -1,7 +1,9 @@
 ﻿using System.Web.Http;
 using Autofac;
+using Autofac.Features.AttributeFilters;
 using Autofac.Integration.WebApi;
 using UsageCore;
+using UsageFramework.Controllers;
 
 namespace UsageFramework
 {
@@ -33,8 +35,11 @@ namespace UsageFramework
                 .Register<IScopedClass>(provider => new ScopedClass(provider.Resolve<ITransientClass>()))
                 .InstancePerLifetimeScope();
 
-            builder.RegisterType<TransientClass2>().Named<ITransientClass>("name");
-            builder.RegisterType<SampleClass>().As<ISampleClass>();
+            builder.RegisterType<TransientClass2>().Keyed<ITransientClass>("name2");
+            builder.RegisterType<SampleClass>().As<ISampleClass>().WithAttributeFiltering();
+
+            // Important: Need to register also controllers
+            builder.RegisterType<ValuesController>();
 
             var container = builder.Build();
 

@@ -27,12 +27,4 @@
     public interface IScopedClass
     {
     }
-
-    public class SampleClass : ISampleClass
-    {
-    }
-
-    public interface ISampleClass
-    {
-    }
 }

@@ -36,13 +36,16 @@ namespace UsageCore
 
     public class SampleClass : ISampleClass
     {
-        public SampleClass([KeyFilter("Name")]ITransientClass transientClass)
-        {
+        public ITransientClass TransientClass { get; set; }
 
+        public SampleClass([KeyFilter("name2")]ITransientClass transientClass)
+        {
+            TransientClass = transientClass;
         }
     }
 
     public interface ISampleClass
     {
+        ITransientClass TransientClass { get; set; }
     }
 }
