@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IocSampleContainer.Tests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsageCore", "UsageCore\UsageCore.csproj", "{4DEDAFAC-019A-4912-9C84-EBCB407F74FB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsageFramework", "UsageFramework\UsageFramework.csproj", "{FD298CF9-4196-4E14-BD8F-EEA4833D3702}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{4DEDAFAC-019A-4912-9C84-EBCB407F74FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DEDAFAC-019A-4912-9C84-EBCB407F74FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DEDAFAC-019A-4912-9C84-EBCB407F74FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD298CF9-4196-4E14-BD8F-EEA4833D3702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD298CF9-4196-4E14-BD8F-EEA4833D3702}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD298CF9-4196-4E14-BD8F-EEA4833D3702}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD298CF9-4196-4E14-BD8F-EEA4833D3702}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
