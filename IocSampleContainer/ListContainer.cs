@@ -19,6 +19,7 @@ namespace IocSampleContainer
             return GetObject<T>(registeredType);
         }
 
+        #region Hide
         public void Register<T>(RegistrationKind registrationKind)
         {
             Register<T, T>(registrationKind);
@@ -26,24 +27,7 @@ namespace IocSampleContainer
 
         public T Resolve<T>(IScope scope)
         {
-            var type = typeof(T);
-
-            var registeredType = _types[type];
-
-            if (registeredType.RegistrationKind == RegistrationKind.Scope)
-            {
-                var objectFromScpe = scope.GetObject(type);
-
-                if (objectFromScpe == null)
-                {
-                    objectFromScpe = GetNewInstance(registeredType.DestType);
-                    scope.AddObject(type, objectFromScpe);
-                }
-
-                return (T)objectFromScpe;
-            }
-
-            return GetObject<T>(registeredType);
+            throw new NotImplementedException();
         }
 
         private T GetObject<T>(ContainerMember registeredType)
@@ -70,7 +54,8 @@ namespace IocSampleContainer
         public IScope StartNewScope()
         {
             return new Scope();
-        }
+        } 
+        #endregion
     }
 
     public class ContainerMember

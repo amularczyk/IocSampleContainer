@@ -27,47 +27,25 @@ namespace IocSampleContainer
             return GetObject<T>(registeredType[name]);
         }
 
+        #region Hide
         public void Register<TIn, TOut>(RegistrationKind registrationKind)
         {
-            _types.Add(typeof(TIn), new RegisteredType {DestType = typeof(TOut), RegistrationKind = registrationKind});
+            throw new NotImplementedException();
         }
 
         public void Register<T>(RegistrationKind registrationKind)
         {
-            _types.Add(typeof(T), new RegisteredType {DestType = typeof(T), RegistrationKind = registrationKind});
+            throw new NotImplementedException();
         }
 
         public T Resolve<T>()
         {
-            var type = typeof(T);
-            ValidateType(type);
-
-            var registeredType = _types[type];
-
-            return GetObject<T>(registeredType);
+            throw new NotImplementedException();
         }
 
         public T Resolve<T>(IScope scope)
         {
-            var type = typeof(T);
-            ValidateType(type);
-
-            var registeredType = _types[type];
-
-            if (registeredType.RegistrationKind == RegistrationKind.Scope)
-            {
-                var objectFromScpe = scope.GetObject(type);
-
-                if (objectFromScpe == null)
-                {
-                    objectFromScpe = GetNewInstance(registeredType.DestType);
-                    scope.AddObject(type, objectFromScpe);
-                }
-
-                return (T)objectFromScpe;
-            }
-
-            return GetObject<T>(registeredType);
+            throw new NotImplementedException();
         }
 
         public IScope StartNewScope()
@@ -102,6 +80,7 @@ namespace IocSampleContainer
         private static object GetNewInstance(Type type)
         {
             return Activator.CreateInstance(type);
-        }
+        } 
+        #endregion
     }
 }

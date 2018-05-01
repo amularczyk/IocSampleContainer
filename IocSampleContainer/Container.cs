@@ -7,10 +7,6 @@ namespace IocSampleContainer
     {
         private readonly Dictionary<Type, RegisteredType> _types = new Dictionary<Type, RegisteredType>();
 
-        public void Register<T>(RegistrationKind registrationKind)
-        {
-            _types.Add(typeof(T), new RegisteredType {DestType = typeof(T), RegistrationKind = registrationKind});
-        }
 
         public void Register<TIn, TOut>(RegistrationKind registrationKind)
         {
@@ -25,6 +21,12 @@ namespace IocSampleContainer
             var registeredType = _types[type];
 
             return GetObject<T>(registeredType);
+        }
+
+        #region Hide
+        public void Register<T>(RegistrationKind registrationKind)
+        {
+            _types.Add(typeof(T), new RegisteredType { DestType = typeof(T), RegistrationKind = registrationKind });
         }
 
         public T Resolve<T>(IScope scope)
@@ -83,6 +85,7 @@ namespace IocSampleContainer
         {
             return new Scope();
         }
+        #endregion
     }
 
     public class RegisteredType
@@ -99,6 +102,7 @@ namespace IocSampleContainer
         Scope
     }
 
+    #region Hide
     public interface IScope : IDisposable
     {
         void AddObject(Type type, object obj);
@@ -113,7 +117,7 @@ namespace IocSampleContainer
         {
             _scopeObjects = new Dictionary<Type, object>();
         }
-        
+
 
         public void Dispose()
         {
@@ -129,5 +133,6 @@ namespace IocSampleContainer
         {
             return _scopeObjects.ContainsKey(type) ? _scopeObjects[type] : null;
         }
-    }
+    } 
+    #endregion
 }
