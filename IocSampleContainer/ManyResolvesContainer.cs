@@ -10,14 +10,14 @@ namespace IocSampleContainer
 
         public void Register<TIn, TOut>(RegistrationKind registrationKind, string name)
         {
-            var registrationType = new RegisteredType { DestType = typeof(TOut), RegistrationKind = registrationKind };
+            var registrationType = new RegisteredType {DestType = typeof(TOut), RegistrationKind = registrationKind};
             if (_types.ContainsKey(typeof(TIn)))
             {
                 _types[typeof(TIn)].Add(name, registrationType);
             }
             else
             {
-                _types.Add(typeof(TIn), new Dictionary<string, RegisteredType> { { name, registrationType } });
+                _types.Add(typeof(TIn), new Dictionary<string, RegisteredType> {{name, registrationType}});
             }
         }
 
@@ -28,6 +28,7 @@ namespace IocSampleContainer
         }
 
         #region Hide
+
         public void Register<TIn, TOut>(RegistrationKind registrationKind)
         {
             throw new NotImplementedException();
@@ -80,7 +81,8 @@ namespace IocSampleContainer
         private static object GetNewInstance(Type type)
         {
             return Activator.CreateInstance(type);
-        } 
+        }
+
         #endregion
     }
 }

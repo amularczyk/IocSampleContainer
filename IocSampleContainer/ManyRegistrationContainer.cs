@@ -29,6 +29,7 @@ namespace IocSampleContainer
         }
 
         #region Hide
+
         public void Register<T>(RegistrationKind registrationKind)
         {
             Register<T, T>(registrationKind);
@@ -68,7 +69,8 @@ namespace IocSampleContainer
         private static object GetNewInstance(Type type)
         {
             return Activator.CreateInstance(type);
-        } 
+        }
+
         #endregion
     }
 }

@@ -6,11 +6,16 @@ namespace IocSampleContainer
 {
     public class ListContainer : IContainer
     {
-        private readonly List<ContainerMember> _types = new List<ContainerMember>();
+        private readonly List<RegisteredTypeWithInputType> _types = new List<RegisteredTypeWithInputType>();
 
         public void Register<TIn, TOut>(RegistrationKind registrationKind)
         {
-            _types.Add(new ContainerMember { InputType = typeof(TIn), DestType = typeof(TOut), RegistrationKind = registrationKind });
+            _types.Add(new RegisteredTypeWithInputType
+            {
+                InputType = typeof(TIn),
+                DestType = typeof(TOut),
+                RegistrationKind = registrationKind
+            });
         }
 
         public T Resolve<T>()
@@ -20,6 +25,7 @@ namespace IocSampleContainer
         }
 
         #region Hide
+
         public void Register<T>(RegistrationKind registrationKind)
         {
             Register<T, T>(registrationKind);
@@ -30,7 +36,7 @@ namespace IocSampleContainer
             throw new NotImplementedException();
         }
 
-        private T GetObject<T>(ContainerMember registeredType)
+        private T GetObject<T>(RegisteredTypeWithInputType registeredType)
         {
             if (registeredType.RegistrationKind == RegistrationKind.Singleton)
             {
@@ -54,11 +60,12 @@ namespace IocSampleContainer
         public IScope StartNewScope()
         {
             return new Scope();
-        } 
+        }
+
         #endregion
     }
 
-    public class ContainerMember
+    public class RegisteredTypeWithInputType
     {
         public Type InputType { get; set; }
         public Type DestType { get; set; }

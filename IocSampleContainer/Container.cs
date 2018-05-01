@@ -24,9 +24,10 @@ namespace IocSampleContainer
         }
 
         #region Hide
+
         public void Register<T>(RegistrationKind registrationKind)
         {
-            _types.Add(typeof(T), new RegisteredType { DestType = typeof(T), RegistrationKind = registrationKind });
+            _types.Add(typeof(T), new RegisteredType {DestType = typeof(T), RegistrationKind = registrationKind});
         }
 
         public T Resolve<T>(IScope scope)
@@ -85,6 +86,7 @@ namespace IocSampleContainer
         {
             return new Scope();
         }
+
         #endregion
     }
 
@@ -103,6 +105,7 @@ namespace IocSampleContainer
     }
 
     #region Hide
+
     public interface IScope : IDisposable
     {
         void AddObject(Type type, object obj);
@@ -133,6 +136,7 @@ namespace IocSampleContainer
         {
             return _scopeObjects.ContainsKey(type) ? _scopeObjects[type] : null;
         }
-    } 
+    }
+
     #endregion
 }
