@@ -7,11 +7,6 @@ namespace IocSampleContainer
     {
         private readonly Dictionary<Type, RegisteredType> _types = new Dictionary<Type, RegisteredType>();
 
-        public void Register<T>(RegistrationKind registrationKind)
-        {
-            _types.Add(typeof(T), new RegisteredType {DestType = typeof(T), RegistrationKind = registrationKind});
-        }
-
         public void Register<TIn, TOut>(RegistrationKind registrationKind)
         {
             _types.Add(typeof(TIn), new RegisteredType {DestType = typeof(TOut), RegistrationKind = registrationKind});
