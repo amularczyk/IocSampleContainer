@@ -3,11 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IocSampleContainer", "IocSampleContainer\IocSampleContainer.csproj", "{1BAA7E2E-9D0D-48A9-B5FF-8336F909E982}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IocSampleContainer.Tests", "IocSampleContainer.Tests\IocSampleContainer.Tests.csproj", "{E3457878-72D5-4289-A2A9-A25442E507D9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsageCore", "UsageCore\UsageCore.csproj", "{4DEDAFAC-019A-4912-9C84-EBCB407F74FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UsageCore", "UsageCore\UsageCore.csproj", "{4DEDAFAC-019A-4912-9C84-EBCB407F74FB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsageFramework", "UsageFramework\UsageFramework.csproj", "{FD298CF9-4196-4E14-BD8F-EEA4833D3702}"
 EndProject
@@ -17,14 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1BAA7E2E-9D0D-48A9-B5FF-8336F909E982}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1BAA7E2E-9D0D-48A9-B5FF-8336F909E982}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1BAA7E2E-9D0D-48A9-B5FF-8336F909E982}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1BAA7E2E-9D0D-48A9-B5FF-8336F909E982}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E3457878-72D5-4289-A2A9-A25442E507D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E3457878-72D5-4289-A2A9-A25442E507D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E3457878-72D5-4289-A2A9-A25442E507D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E3457878-72D5-4289-A2A9-A25442E507D9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4DEDAFAC-019A-4912-9C84-EBCB407F74FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4DEDAFAC-019A-4912-9C84-EBCB407F74FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DEDAFAC-019A-4912-9C84-EBCB407F74FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
