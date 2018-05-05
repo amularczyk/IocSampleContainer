@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace IocSampleContainer
 {
-    public class ListContainer : IContainer
+    public class ListContainer
     {
         private readonly List<RegisteredTypeWithInputType> _types = new List<RegisteredTypeWithInputType>();
 
@@ -25,17 +25,7 @@ namespace IocSampleContainer
         }
 
         #region Hide
-
-        public void Register<T>(RegistrationKind registrationKind)
-        {
-            Register<T, T>(registrationKind);
-        }
-
-        public T Resolve<T>(IScope scope)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         private T GetObject<T>(RegisteredTypeWithInputType registeredType)
         {
             if (registeredType.RegistrationKind == RegistrationKind.Singleton)
@@ -55,11 +45,6 @@ namespace IocSampleContainer
         private static object GetNewInstance(Type type)
         {
             return Activator.CreateInstance(type);
-        }
-
-        public IScope StartNewScope()
-        {
-            return new Scope();
         }
 
         #endregion

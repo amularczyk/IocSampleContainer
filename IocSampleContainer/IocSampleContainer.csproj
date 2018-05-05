@@ -44,7 +44,6 @@
     <Compile Include="ManyResolvesContainer.cs" />
     <Compile Include="ManyRegistrationContainer.cs" />
     <Compile Include="Container.cs" />
-    <Compile Include="IContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace IocSampleContainer
 {
-    public class Container : IContainer
+    public class Container
     {
         private readonly Dictionary<Type, RegisteredType> _types = new Dictionary<Type, RegisteredType>();
 

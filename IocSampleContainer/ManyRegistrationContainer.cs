@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace IocSampleContainer
 {
-    public class ManyRegistrationContainer : IContainer
+    public class ManyRegistrationContainer
     {
         private readonly Dictionary<List<Type>, RegisteredType> _types = new Dictionary<List<Type>, RegisteredType>();
 
@@ -30,21 +30,6 @@ namespace IocSampleContainer
 
         #region Hide
 
-        public void Register<T>(RegistrationKind registrationKind)
-        {
-            Register<T, T>(registrationKind);
-        }
-
-        public T Resolve<T>(IScope scope)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IScope StartNewScope()
-        {
-            return new Scope();
-        }
-
         private T GetObject<T>(RegisteredType registeredType)
         {
             if (registeredType.RegistrationKind == RegistrationKind.Singleton)
@@ -59,11 +44,6 @@ namespace IocSampleContainer
 
             var obj = GetNewInstance(registeredType.DestType);
             return (T)obj;
-        }
-
-        private void ValidateType(Type type)
-        {
-            throw new NotImplementedException();
         }
 
         private static object GetNewInstance(Type type)
