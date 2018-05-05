@@ -7,17 +7,7 @@ namespace IocSampleContainer
     {
         private readonly List<Type> _singletons = new List<Type>();
         private readonly Dictionary<Type, RegisteredType> _types = new Dictionary<Type, RegisteredType>();
-
-        public void Register<T>(bool isSingleton)
-        {
-            if (isSingleton)
-            {
-                _singletons.Add(typeof(T));
-            }
-
-            _types.Add(typeof(T), new RegisteredType { DestType = typeof(T)});
-        }
-
+        
         public void Register<TIn, TOut>(bool isSingleton)
         {
             if (isSingleton)
