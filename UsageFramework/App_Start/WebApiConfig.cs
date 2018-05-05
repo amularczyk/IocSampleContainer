@@ -29,8 +29,8 @@ namespace UsageFramework
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterType<SingletonClass>().As<ISingletonClass>().SingleInstance();
             builder.RegisterType(typeof(TransientClass)).As(typeof(ITransientClass));
+            builder.RegisterType<SingletonClass>().As<ISingletonClass>().SingleInstance();
             builder
                 .Register<IScopedClass>(provider => new ScopedClass(provider.Resolve<ITransientClass>()))
                 .InstancePerLifetimeScope();

@@ -16,8 +16,8 @@ namespace UsageCore
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<ISingletonClass, SingletonClass>();
             services.AddTransient(typeof(ITransientClass), typeof(TransientClass));
+            services.AddSingleton<ISingletonClass, SingletonClass>();
             services.AddScoped<IScopedClass, ScopedClass>(provider =>
                 new ScopedClass(provider.GetService<ITransientClass>()));
 
