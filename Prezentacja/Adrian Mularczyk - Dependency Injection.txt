@@ -1,5 +1,5 @@
 \{document}
-Cześć. Nazywa się Adrian Mularczyk i dzisiaj opowiem wam co to jest wstrzykiwanie zależności, jak dodać je do projektu i jak wygląda jego przykładowa implemetacja.
+Cześć. Nazywam się Adrian Mularczyk i dzisiaj opowiem wam co to jest wstrzykiwanie zależności, jak dodać je do projektu i jak wygląda jego przykładowa prosta implemetacja.
 
 
 \{Agenda}
@@ -63,13 +63,13 @@ Zobaczyliśmy jak dodać wstrzykiwanie zależności do naszego projektu. Ale co 
 A teraz kilka przykładów jak taką implementację można by rozszerzyć:
 1. Lista zamiast słownika.
 Do klasy RegisteredType wystarczy dodać InputType. Rejestracja wygląda niemal identycznie, a w Resolve zamiast w słowniku pobrać element według danego klucza, to przeszukujemy listę.
-2. Rejestracja wielu typów wejściowych.
-W niektórych implementacjach istnieje możliwość zarejestrowania wielu typów na jeden - taka sytuacja może być porządana gdy jakaś nasza klasa implementuje wiele interfejsów. Co musimy zrobić, to w naszym słowniku zamienić klucz który jest Typem, na listę typów. W rejestracji teraz musimy patrzeć, czy dany typ docelowy został już zarejestrowany i jeśli tak, to typ wejściowy dodać do listy kluczy, a jeśli nie, to stworzyć nową parę: lista kluczy i zarejestrowany typ. Resolve wygląda podobnie, tylko teraz przeszukujemy listę klucz w poszukiwaniu naszego typu.
-3. Rejestracja wielu typów docelowych.
+2. Rejestracja wielu typów docelowych.
 To przyda nam się, gdy wiele klas implementuje ten sam interfejs. Można sobie z tym radzić tworzać dodatkowe interfejsy, a możne także skorzystać z czegoś takiego jak 'name parameter'. Klucz naszego słownika nie ulega zmianie, ale zmianie ulega wartość. Teraz zamiast RegisteredType będziemy mieli słownik par: nazwa i RegisteredType. Zatem w operacji Register patrzymy, czy nasz typ wejściowy już jest w słowniku i jeśli tak, to parę nazwa i RegisteredType dodajemy do jego słownika, a jeśli nie, to tworzymy nową parę zawierającą typ wejściowy i słownik. Resolve zamiast przeglądać jeden słownik, to teraz przegląda dwa - najpierw aby dla danego typu, a następnie dla danej nazwy.
+3. Rejestracja wielu typów wejściowych.
+W niektórych implementacjach istnieje możliwość zarejestrowania wielu typów na jeden - taka sytuacja może być porządana gdy jakaś nasza klasa implementuje wiele interfejsów. Co musimy zrobić, to w naszym słowniku zamienić klucz który jest Typem, na listę typów. W rejestracji teraz musimy patrzeć, czy dany typ docelowy został już zarejestrowany i jeśli tak, to typ wejściowy dodać do listy kluczy, a jeśli nie, to stworzyć nową parę: lista kluczy i zarejestrowany typ. Resolve wygląda podobnie, tylko teraz przeszukujemy listę klucz w poszukiwaniu naszego typu.
 
 \section{Podsumowanie}
-Mam nadzieję, że dzięki tej prezentacji dowiedzieliście się trochę więcej o wstrzykiwaniu zależności, a także przekonaliście się, że tak na prawdę nie dzieję się tam żadna magia i chętniej będziecie używać tego w swoich projektach.
+Mam nadzieję, że dzięki tej prezentacji dowiedzieliście się trochę więcej o wstrzykiwaniu zależności, jak je dodać do projektu, a także przekonaliście się, że tak na prawdę nie dzieję się tam żadna magia i chętniej będziecie używać tego w swoich projektach.
 Czy są jakieś pytania?
 Z racji, że była to moja pierwsza prezetnacja w życiu, to byłbym wdzięczny za feedback. Może być osobiście, może być na e-mail. Jakby ktoś się wahał, to nie obawiam się krytyki.
 Dziękuję.
