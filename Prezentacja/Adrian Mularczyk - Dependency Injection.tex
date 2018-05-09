@@ -47,25 +47,29 @@ PGS Software
 
 \begin{frame}{SOLID}
 \begin{table}
-	\Large{\begin{tabular}{ c c c l }
+     \begin{Large}
+	\begin{tabular}{ c c c l }
 	S &-& SRP& (Single responsibility principle)\\
 	O &-& OCP& (Open/closed principle)\\
 	L &-& LSP& (Liskov substitution principle)\\
 	I &-& ISP& (Interface segregation principle)\\
 	D &-& DIP& (Dependency inversion principle)
-	\end{tabular}}
+	\end{tabular}
+     \end{Large}
 \end{table}
 \end{frame}
 
 \begin{frame}{SOLID}
 \begin{table}
-	\Large{\begin{tabular}{ c c c l }
+     \begin{Large}
+	\begin{tabular}{ c c c l }
 \color{gray} S &\color{gray}-& \color{gray}SRP& \color{gray}(Single responsibility principle)\\
 \color{gray} O &\color{gray}-& \color{gray}OCP& \color{gray}(Open/closed principle)\\
 \color{gray}	L &\color{gray}-& \color{gray}LSP& \color{gray}(Liskov substitution principle)\\
 \color{gray}	I &\color{gray}-& \color{gray}ISP& \color{gray}(Interface segregation principle)\\
 	D &-& DIP& (Dependency inversion principle)
-	\end{tabular}}
+	\end{tabular}
+     \end{Large}
 \end{table}
 \end{frame}
 
@@ -81,27 +85,34 @@ PGS Software
 
 \begin{frame}{Dependency injection container}
 \begin{table}
-     \begin{small}
+     \begin{Large}
 	\begin{tabular}{ p{6cm} p{6cm} }
-	
-	\begin{minipage}{.6\textwidth}
-		\Large{\begin{itemize}
-			\item Register
-			\item Resolve
-		\end{itemize}}
-   	 \end{minipage}
-	&
-	\begin{minipage}{.4\textwidth}
-  		\includegraphics[height=2.8cm]{Example_Container.png}
-\\ \\
-		{\tiny \texttt{container.Register<A>();\\
-			container.Register<IB, B>();}}\\ \\
-		{\tiny \texttt{container.Resolve<IB>();\\
-			container.Resolve<A>();}}
-    	\end{minipage}
-    	
+		\begin{minipage}{.6\textwidth}
+			\begin{itemize}
+				\item Register
+				\item Resolve
+			\end{itemize}
+   		 \end{minipage}
+   		 &
 	\end{tabular}
-     \end{small}
+     \end{Large}
+\end{table}
+\end{frame}
+
+\begin{frame}{Dependency injection container}
+\begin{table}
+	\begin{tabular}{ p{5cm} p{5cm} }
+		\begin{minipage}{.5\textwidth}
+  			\includegraphics[height=2.8cm]{Example_Container.png}
+   		 \end{minipage}
+   		 &
+		\begin{minipage}{.5\textwidth}
+			{\tiny \texttt{container.Register<A>();\\
+				container.Register<IB, B>();}}\\ \\
+			{\tiny \texttt{container.Resolve<IB>();\\
+				container.Resolve<A>();}}
+   		 \end{minipage}
+	\end{tabular}
 \end{table}
 \end{frame}
 
@@ -117,36 +128,41 @@ PGS Software
 \subsection*{Dependency injection}
 
 \begin{frame}{Dependency injection}
-\begin{table}
-     \begin{small}
-	\begin{tabular}{ c p{3cm} }
-	
-	\begin{minipage}{.6\textwidth}
-	\large{\begin{itemize}
+     \begin{Large}
+	\begin{itemize}
 		\item Injecting by the constructor
 		\item Injecting by the method
 		\item Injecting by the property
-	\end{itemize}}
-   	 \end{minipage}
-   	 &   	 
-	\begin{minipage}{.4\textwidth}	
-  		\includegraphics[height=5cm]{PresentationDependency.png}
-   	 \end{minipage}
+	\end{itemize}
+     \end{Large}
+\end{frame}
 
+\begin{frame}{Dependency injection}
+\begin{table}
+	\begin{tabular}{ p{5cm} p{5cm} }
+		\begin{minipage}{.5\textwidth}
+  			\includegraphics[height=3cm]{DependencyConstructor.png}
+   		 \end{minipage}
+   		 &
+		\begin{minipage}{.5\textwidth}
+  			\includegraphics[height=2cm]{DependencyMethod.png} \\ \\
+  			\includegraphics[height=1cm]{DependencyProperty.png}
+   		 \end{minipage}
 	\end{tabular}
-     \end{small}
 \end{table}
 \end{frame}
 
 \subsection*{Registration types}
 
 \begin{frame}{Registration types}
-\Large{\begin{itemize}
-	\item Register as Singleton,
-	\item Register as Transient,
-	\item Register as Scope (Thread, HttpRequest),
-	\item Register as FactoryMethod.
-\end{itemize}}
+     \begin{Large}
+	\begin{itemize}
+		\item Register as Singleton,
+		\item Register as Transient,
+		\item Register as Scope (Thread, HttpRequest),
+		\item Register as FactoryMethod.
+	\end{itemize}
+     \end{Large}
 \end{frame}
 
 \subsection*{Sample implementations}
