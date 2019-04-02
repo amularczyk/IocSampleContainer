@@ -1,1 +1,1 @@
-# IocSampleContainer
+# Prezentacja na temat wstrzykiwania zależności
